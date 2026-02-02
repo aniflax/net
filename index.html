@@ -7,6 +7,9 @@
     <meta name="description" content="Aniflax.net – official website" />
     <meta name="author" content="Aniflax" />
 
+    <!-- UPDATED: Added your image as the Favicon (Browser Tab Icon) -->
+    <link rel="icon" href="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -213,13 +216,27 @@
         </div>
 
         <div class="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
-            <p class="reveal text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-6">
+            
+            <!-- UPDATED: Profile Picture Added Here -->
+            <div class="reveal relative inline-block mb-8 group">
+                <!-- Glowing ring effect behind image -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                <!-- The Image -->
+                <img 
+                    src="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg" 
+                    alt="Aniflax" 
+                    class="relative w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-background shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                >
+            </div>
+            <!-- End of Profile Picture -->
+
+            <p class="reveal reveal-delay-1 text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-6">
                 Welcome to my creative universe
             </p>
-            <h1 class="reveal reveal-delay-1 font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-6 leading-tight">
+            <h1 class="reveal reveal-delay-2 font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-6 leading-tight">
                 I'm <span class="text-gradient">Aniflax</span>
             </h1>
-            <p class="reveal reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
+            <p class="reveal reveal-delay-3 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
                 A multi-disciplinary creative crafting experiences through music, code, film, and design.
             </p>
 
@@ -251,54 +268,12 @@
                 </div>
             </div>
 
-            <a href="#music" class="reveal reveal-delay-3 inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm transition-all hover:shadow-lg hover:scale-105">
+            <a href="#webdev" class="reveal reveal-delay-3 inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm transition-all hover:shadow-lg hover:scale-105">
                 Explore My Work
                 <i data-lucide="arrow-down" class="w-4 h-4 animate-bounce"></i>
             </a>
         </div>
     </section>
-
-    <!-- Music Section -->
-    <section id="music" class="section-padding bg-muted/30">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Sounds & Melodies</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Music</h2>
-                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Crafting emotions through guitar and piano, from intimate acoustic pieces to powerful compositions.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Guitar Card -->
-                <div class="card-premium p-8 group reveal">
-                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
-                        <i data-lucide="guitar" class="w-8 h-8 text-accent"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Guitar</h3>
-                    <p class="text-muted-foreground mb-6 leading-relaxed">From soulful acoustic melodies to electrifying solos, expressing emotions through strings.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Rock</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Blues</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Acoustic</span>
-                    </div>
-                </div>
-
-                <!-- Piano Card -->
-                <div class="card-premium p-8 group reveal reveal-delay-1">
-                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M11 20 22 4"/><path d="m22 20-11-6"/><path d="M13 20v-6"/><path d="M15 20v-6"/><path d="M17 20v-6"/><path d="M19 20v-6"/><path d="M2 10v10"/><path d="M5 20v-6"/><path d="M7 20v-6"/><path d="M9 20v-6"/></svg>
-                    </div>
-                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Piano</h3>
-                    <p class="text-muted-foreground mb-6 leading-relaxed">Creating atmospheric compositions and heartfelt arrangements on the keys.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Classical</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Ambient</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Film Score</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Web Dev Section -->
     <section id="webdev" class="section-padding">
         <div class="container mx-auto">
@@ -375,6 +350,47 @@
                         </div>
                         <h3 class="font-display text-xl font-medium mb-2 group-hover:text-accent transition-colors">SaaS Dashboard</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Analytics dashboard with real-time data visualization and user management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="section-padding bg-muted/30">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Sounds & Melodies</p>
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Music</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Crafting emotions through guitar and piano, from intimate acoustic pieces to powerful compositions.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Guitar Card -->
+                <div class="card-premium p-8 group reveal">
+                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
+                        <i data-lucide="guitar" class="w-8 h-8 text-accent"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Guitar</h3>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">From soulful acoustic melodies to electrifying solos, expressing emotions through strings.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Rock</span>
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Blues</span>
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Acoustic</span>
+                    </div>
+                </div>
+
+                <!-- Piano Card -->
+                <div class="card-premium p-8 group reveal reveal-delay-1">
+                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M11 20 22 4"/><path d="m22 20-11-6"/><path d="M13 20v-6"/><path d="M15 20v-6"/><path d="M17 20v-6"/><path d="M19 20v-6"/><path d="M2 10v10"/><path d="M5 20v-6"/><path d="M7 20v-6"/><path d="M9 20v-6"/></svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Piano</h3>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">Creating atmospheric compositions and heartfelt arrangements on the keys.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Classical</span>
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Ambient</span>
+                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Film Score</span>
                     </div>
                 </div>
             </div>
