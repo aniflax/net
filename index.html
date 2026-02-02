@@ -7,7 +7,7 @@
     <meta name="description" content="Aniflax.net – official website" />
     <meta name="author" content="Aniflax" />
 
-    <!-- UPDATED: Added your image as the Favicon (Browser Tab Icon) -->
+    <!-- Favicon -->
     <link rel="icon" href="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg">
 
     <!-- Google Fonts -->
@@ -156,6 +156,16 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
+        /* Floating Animation for Profile */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
         /* Lightbox */
         #lightbox {
             opacity: 0;
@@ -173,10 +183,8 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
         <div class="container mx-auto px-6 md:px-12 flex items-center justify-between">
-            <a href="#home" class="font-display text-2xl font-semibold tracking-tight group">
-                <span class="text-foreground">Ani</span>
-                <span class="text-gradient">flax</span>
-            </a>
+            <!-- FIXED: Removed space between Ani and flax -->
+            <a href="#home" class="font-display text-2xl font-semibold tracking-tight group"><span class="text-foreground">Ani</span><span class="text-gradient">flax</span></a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8">
@@ -208,7 +216,8 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- UPDATED: Added pt-32 to move content down -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden">
         <!-- Animated Background Blobs -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div class="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-[pulse_8s_infinite]"></div>
@@ -217,25 +226,31 @@
 
         <div class="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
             
-            <!-- UPDATED: Profile Picture Added Here -->
-            <div class="reveal relative inline-block mb-8 group">
-                <!-- Glowing ring effect behind image -->
-                <div class="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                <!-- The Image -->
-                <img 
-                    src="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg" 
-                    alt="Aniflax" 
-                    class="relative w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-background shadow-2xl transition-transform duration-500 group-hover:scale-105"
-                >
+            <!-- UPDATED: Fancy Animated Profile Picture -->
+            <div class="reveal relative inline-block mb-12 group animate-float">
+                <!-- Outer Glow Ring -->
+                <div class="absolute -inset-4 bg-gradient-to-tr from-accent/40 to-primary/10 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-700"></div>
+                
+                <!-- The Image with Glass Frame -->
+                <div class="relative p-2 bg-background/50 backdrop-blur-sm rounded-full border border-foreground/5 shadow-2xl">
+                    <img 
+                        src="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg" 
+                        alt="Aniflax" 
+                        class="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-inner"
+                    >
+                </div>
             </div>
             <!-- End of Profile Picture -->
 
             <p class="reveal reveal-delay-1 text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-6">
                 Welcome to my creative universe
             </p>
-            <h1 class="reveal reveal-delay-2 font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-6 leading-tight">
-                I'm <span class="text-gradient">Aniflax</span>
+            
+            <!-- UPDATED: Fancy Text Style -->
+            <h1 class="reveal reveal-delay-2 font-display text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-[0.9] mb-8">
+                I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-[pulse_5s_ease-in-out_infinite]">Aniflax</span>
             </h1>
+
             <p class="reveal reveal-delay-3 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
                 A multi-disciplinary creative crafting experiences through music, code, film, and design.
             </p>
@@ -274,6 +289,7 @@
             </a>
         </div>
     </section>
+
     <!-- Web Dev Section -->
     <section id="webdev" class="section-padding">
         <div class="container mx-auto">
