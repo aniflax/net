@@ -1,768 +1,645 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX46JVYCVM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-KX46JVYCVM');
-    </script>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniflax.net</title>
-    <meta name="description" content="Aniflax.net – official website" />
-    <meta name="author" content="Aniflax" />
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FinFlow - Personal Finance</title>
     
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                container: {
-                    center: true,
-                    padding: "2rem",
-                    screens: { "2xl": "1400px" },
-                },
-                extend: {
-                    fontFamily: {
-                        display: ['Playfair Display', 'serif'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        border: "hsl(var(--border))",
-                        input: "hsl(var(--input))",
-                        ring: "hsl(var(--ring))",
-                        background: "hsl(var(--background))",
-                        foreground: "hsl(var(--foreground))",
-                        primary: {
-                            DEFAULT: "hsl(var(--primary))",
-                            foreground: "hsl(var(--primary-foreground))",
-                        },
-                        secondary: {
-                            DEFAULT: "hsl(var(--secondary))",
-                            foreground: "hsl(var(--secondary-foreground))",
-                        },
-                        muted: {
-                            DEFAULT: "hsl(var(--muted))",
-                            foreground: "hsl(var(--muted-foreground))",
-                        },
-                        accent: {
-                            DEFAULT: "hsl(var(--accent))",
-                            foreground: "hsl(var(--accent-foreground))",
-                        },
-                        card: {
-                            DEFAULT: "hsl(var(--card))",
-                            foreground: "hsl(var(--card-foreground))",
-                        }
-                    },
-                    borderRadius: {
-                        lg: "var(--radius)",
-                        md: "calc(var(--radius) - 2px)",
-                        sm: "calc(var(--radius) - 4px)",
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            /* Core Palette */
-            --background: 40 20% 98%;
-            --foreground: 30 10% 12%;
-            --card: 40 15% 96%;
-            --card-foreground: 30 10% 12%;
-            --primary: 30 10% 12%;
-            --primary-foreground: 40 20% 98%;
-            --secondary: 35 8% 88%;
-            --secondary-foreground: 30 10% 20%;
-            --muted: 40 15% 94%;
-            --muted-foreground: 30 8% 45%;
-            --accent: 38 70% 50%;
-            --accent-foreground: 40 20% 98%;
-            --border: 35 15% 88%;
-            --input: 35 15% 88%;
-            --ring: 38 70% 50%;
-            --radius: 0.75rem;
-
-            --shadow-soft: 0 4px 20px -4px hsl(30 10% 12% / 0.08);
-            --shadow-elevated: 0 20px 50px -12px hsl(30 10% 12% / 0.15);
-            --gradient-accent: linear-gradient(135deg, hsl(38 70% 50%) 0%, hsl(35 85% 55%) 100%);
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --income: #10b981;
+            --expense: #ef4444;
+            --invest: #3b82f6;
+            --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
+        body { 
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            margin: 0;
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding-bottom: 90px;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Utilities */
+        /* --- GLASS EFFECT --- */
         .glass {
-            background-color: hsla(40, 20%, 98%, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid hsla(35, 15%, 88%, 0.5);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            border-radius: 20px;
         }
 
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: var(--gradient-accent);
+        /* --- NAVIGATION --- */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
 
-        .card-premium {
-            background-color: hsl(var(--card));
-            border-radius: var(--radius);
-            border: 1px solid hsl(var(--border) / 0.5);
-            box-shadow: var(--shadow-soft);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        .logo { 
+            font-size: 22px; 
+            font-weight: 800; 
+            color: var(--primary);
+            display: flex; align-items: center; gap: 8px;
         }
 
-        .card-premium:hover {
-            box-shadow: var(--shadow-elevated);
-            transform: translateY(-4px);
+        .user-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+        .page { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .page.active { display: block; opacity: 1; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .hidden { display: none !important; }
+
+        /* --- DASHBOARD --- */
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin-bottom: 20px; 
+        }
+        .stat-card { padding: 15px; text-align: center; }
+        .stat-card small { display: block; color: var(--text-light); font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .stat-card h2 { margin: 0; font-size: 18px; word-break: break-all; }
+
+        /* Split Layout for Desktop */
+        .dashboard-split { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 768px) {
+            .dashboard-split { grid-template-columns: 350px 1fr; align-items: start; }
         }
 
-        .section-padding {
-            padding: 5rem 1.5rem;
-        }
-        @media (min-width: 768px) { .section-padding { padding: 8rem 3rem; } }
-
-        /* Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        /* --- INPUTS --- */
+        .custom-select {
+            padding: 8px 12px; border-radius: 12px; border: 1px solid #cbd5e1;
+            background: white; font-weight: 600; color: var(--text-dark); outline: none;
+            min-width: 120px;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        input, select { 
+            width: 100%; padding: 14px; margin-top: 8px;
+            border: 1px solid transparent; border-radius: 14px; 
+            background: rgba(255, 255, 255, 0.5);
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box; transition: 0.3s; font-size: 14px;
+        }
+        input:focus, select:focus { background: white; border-color: var(--primary); outline: none; }
+        
+        /* Date Input Specifics */
+        input[type="date"] {
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
+        .btn-primary { 
+            background: var(--primary); color: white; width: 100%; 
+            padding: 15px; font-size: 16px; border-radius: 14px; 
+            border: none; font-weight: 600; cursor: pointer; margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            transition: 0.2s;
+        }
+        .btn-primary:active { transform: scale(0.98); }
 
-        /* Floating Animation for Profile */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        /* --- LIST ITEMS --- */
+        .item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 12px 15px; background: white; margin-bottom: 10px; border-radius: 16px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .cat-icon { 
+            width: 40px; height: 40px; border-radius: 12px; 
+            background: #eef2ff; color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 16px;
         }
 
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        /* --- SETTINGS --- */
+        .setting-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid #f1f5f9;
         }
 
-        /* Lightbox */
-        #lightbox {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        /* --- BOTTOM TABS --- */
+        .tab-bar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; padding: 10px 15px; border-radius: 50px;
+            z-index: 999; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        #lightbox.open {
-            opacity: 1;
-            pointer-events: all;
+        .tab-btn {
+            background: transparent; border: none; padding: 10px 20px;
+            border-radius: 30px; color: var(--text-light); cursor: pointer;
+            transition: 0.3s; display: flex; align-items: center; gap: 8px;
         }
+        .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+        .desktop-text { display: none; font-size: 13px; font-weight: 500; }
+        @media (min-width: 600px) { .desktop-text { display: block; } }
+
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
-        <div class="container mx-auto px-6 md:px-12 flex items-center justify-between">
-            <!-- FIXED: Removed space between Ani and flax -->
-            <a href="#home" class="font-display text-2xl font-semibold tracking-tight group"><span class="text-foreground">Ani</span><span class="text-gradient">flax</span></a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#home" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</a>
-                <a href="#music" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Music</a>
-                <a href="#webdev" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Web Dev</a>
-                <a href="#filmmaking" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Filmmaking</a>
-                <a href="#design" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Design</a>
-                <a href="#contact" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+    <!-- NAV -->
+    <nav class="glass-nav">
+        <div class="logo"><i class="fas fa-wallet"></i> FinFlow</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div id="user-info" class="hidden">
+                <img id="header-pic" src="" class="user-avatar">
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-muted rounded-lg transition-colors">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+            <button id="loginBtn" class="btn-primary" style="margin:0; padding: 8px 20px; width: auto; font-size: 13px;">Sign In</button>
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-background pt-24 px-6 hidden transform transition-transform duration-300">
-        <div class="flex flex-col gap-6">
-            <a href="#home" class="mobile-link text-2xl font-display font-medium text-foreground">Home</a>
-            <a href="#music" class="mobile-link text-2xl font-display font-medium text-foreground">Music</a>
-            <a href="#webdev" class="mobile-link text-2xl font-display font-medium text-foreground">Web Dev</a>
-            <a href="#filmmaking" class="mobile-link text-2xl font-display font-medium text-foreground">Filmmaking</a>
-            <a href="#design" class="mobile-link text-2xl font-display font-medium text-foreground">Design</a>
-            <a href="#contact" class="mobile-link text-2xl font-display font-medium text-foreground">Contact</a>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <!-- UPDATED: Added pt-32 to move content down -->
-    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden">
-        <!-- Animated Background Blobs -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-[pulse_8s_infinite]"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-[pulse_10s_infinite]"></div>
+    <div class="container">
+        <!-- LOGIN SCREEN -->
+        <div id="locked-message" class="glass" style="text-align: center; padding: 60px 20px; margin-top: 50px;">
+            <div style="font-size: 50px; margin-bottom: 15px;">🔒</div>
+            <h2>Welcome Back</h2>
+            <p style="color: var(--text-light);">Sign in to manage your finances securely.</p>
         </div>
 
-        <div class="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
+        <!-- === 1. DASHBOARD === -->
+        <div id="page-dashboard" class="page">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2 style="margin:0;">Dashboard</h2>
+                <!-- Month Selector -->
+                <select id="dash-month-select" class="custom-select"></select>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass">
+                    <small>Income</small>
+                    <h2 id="kpi-income" style="color: var(--income)">0</h2>
+                </div>
+                <div class="stat-card glass">
+                    <small>Expenses</small>
+                    <h2 id="kpi-expense" style="color: var(--expense)">0</h2>
+                </div>
+                <div class="stat-card glass">
+                    <small style="color: var(--invest)">Invested</small>
+                    <h2 id="kpi-invest">0</h2>
+                </div>
+            </div>
+
+            <div class="dashboard-split">
+                <!-- CHART -->
+                <div class="glass" style="padding: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <h4 style="margin: 0 0 15px 0; align-self: flex-start;">Spending</h4>
+                    <div style="width: 200px; height: 200px; position: relative;">
+                        <canvas id="dashChart"></canvas>
+                        <div id="no-data-msg" class="hidden" style="position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:12px; color:#aaa; text-align:center;">No Data</div>
+                    </div>
+                </div>
+
+                <!-- ADD TRANSACTION FORM -->
+                <div class="glass" style="padding: 25px;">
+                    <h3 style="margin: 0 0 15px 0;">Add Transaction</h3>
+                    
+                    <!-- Date Input (New) -->
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-light); margin-left: 5px;">Date</label>
+                    <input type="date" id="inp-date" style="margin-top: 5px; margin-bottom: 10px;">
+
+                    <input type="text" id="inp-desc" placeholder="Description (e.g. Grocery)">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="number" id="inp-amt" placeholder="Amount">
+                        <select id="inp-type">
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
+
+                    <select id="inp-cat">
+                        <option value="Needs">Needs (Rent, Bills)</option>
+                        <option value="Wants">Wants (Fun, Dining)</option>
+                        <option value="Investments">Investments</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <button id="btn-save" class="btn-primary">Save Transaction</button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Recent Activity</h3>
+            <div id="dash-history" style="padding-bottom: 20px;"></div>
+        </div>
+
+        <!-- === 2. HISTORY === -->
+        <div id="page-history" class="page">
+            <h2 style="margin-bottom: 20px;">History</h2>
+            <div class="glass" style="padding: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <select id="history-filter-month" class="custom-select"><option value="all">All Time</option></select>
+                    <select id="history-filter-cat" class="custom-select">
+                        <option value="all">All Categories</option>
+                        <option value="Needs">Needs</option>
+                        <option value="Wants">Wants</option>
+                        <option value="Investments">Investments</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div id="history-list-full"></div>
+            </div>
+        </div>
+
+        <!-- === 3. SETTINGS === -->
+        <div id="page-settings" class="page">
+            <h2 style="margin-bottom: 20px;">Settings</h2>
             
-            <!-- UPDATED: Fancy Animated Profile Picture -->
-            <div class="reveal relative inline-block mb-12 group animate-float">
-                <!-- Outer Glow Ring -->
-                <div class="absolute -inset-4 bg-gradient-to-tr from-accent/40 to-primary/10 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-700"></div>
-                
-                <!-- The Image with Glass Frame -->
-                <div class="relative p-2 bg-background/50 backdrop-blur-sm rounded-full border border-foreground/5 shadow-2xl">
-                    <img 
-                        src="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg" 
-                        alt="Aniflax" 
-                        class="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-inner"
-                    >
-                </div>
-            </div>
-            <!-- End of Profile Picture -->
-
-            <p class="reveal reveal-delay-1 text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-6">
-                Welcome to my creative universe
-            </p>
-            
-            <!-- UPDATED: Fancy Text Style -->
-            <h1 class="reveal reveal-delay-2 font-display text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-[0.9] mb-8">
-                I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-[pulse_5s_ease-in-out_infinite]">Aniflax</span>
-            </h1>
-
-            <p class="reveal reveal-delay-3 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-                A multi-disciplinary creative crafting experiences through music, code, film, and design.
-            </p>
-
-            <!-- Expertise Icons -->
-            <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-6 md:gap-10 mb-16">
-                <div class="flex flex-col items-center gap-2 group">
-                    <div class="p-4 rounded-2xl bg-muted/50 group-hover:bg-accent/10 transition-colors duration-300">
-                        <i data-lucide="music" class="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <span class="text-xs font-medium text-muted-foreground">Musician</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 group">
-                    <div class="p-4 rounded-2xl bg-muted/50 group-hover:bg-accent/10 transition-colors duration-300">
-                        <i data-lucide="code" class="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <span class="text-xs font-medium text-muted-foreground">Developer</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 group">
-                    <div class="p-4 rounded-2xl bg-muted/50 group-hover:bg-accent/10 transition-colors duration-300">
-                        <i data-lucide="film" class="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <span class="text-xs font-medium text-muted-foreground">Filmmaker</span>
-                </div>
-                <div class="flex flex-col items-center gap-2 group">
-                    <div class="p-4 rounded-2xl bg-muted/50 group-hover:bg-accent/10 transition-colors duration-300">
-                        <i data-lucide="palette" class="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <span class="text-xs font-medium text-muted-foreground">Designer</span>
-                </div>
-            </div>
-
-            <a href="#webdev" class="reveal reveal-delay-3 inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm transition-all hover:shadow-lg hover:scale-105">
-                Explore My Work
-                <i data-lucide="arrow-down" class="w-4 h-4 animate-bounce"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Web Dev Section -->
-    <section id="webdev" class="section-padding">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Code & Creativity</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Web Development</h2>
-                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Building modern, performant, and beautiful web experiences with cutting-edge technologies.</p>
-            </div>
-
-            <!-- Tech Philosophy -->
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 mb-16 reveal">
-                <div class="flex items-center gap-3 group">
-                    <i data-lucide="code" class="w-5 h-5 text-accent"></i>
-                    <span class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Clean Code</span>
-                </div>
-                <div class="flex items-center gap-3 group">
-                    <i data-lucide="layers" class="w-5 h-5 text-accent"></i>
-                    <span class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Scalable</span>
-                </div>
-                <div class="flex items-center gap-3 group">
-                    <i data-lucide="zap" class="w-5 h-5 text-accent"></i>
-                    <span class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Fast</span>
-                </div>
-                <div class="flex items-center gap-3 group">
-                    <i data-lucide="globe" class="w-5 h-5 text-accent"></i>
-                    <span class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Responsive</span>
-                </div>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="card-premium overflow-hidden group reveal">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="E-Commerce" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">React</span>
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">Node.js</span>
-                        </div>
-                        <h3 class="font-display text-xl font-medium mb-2 group-hover:text-accent transition-colors">E-Commerce Platform</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">Full-stack online store with modern UI, secure payments, and real-time inventory.</p>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="card-premium overflow-hidden group reveal reveal-delay-1">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop" alt="Portfolio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">Next.js</span>
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">Tailwind</span>
-                        </div>
-                        <h3 class="font-display text-xl font-medium mb-2 group-hover:text-accent transition-colors">Creative Portfolio</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">Stunning portfolio website with smooth animations and immersive experiences.</p>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="card-premium overflow-hidden group reveal reveal-delay-2">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="SaaS" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">TypeScript</span>
-                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">PostgreSQL</span>
-                        </div>
-                        <h3 class="font-display text-xl font-medium mb-2 group-hover:text-accent transition-colors">SaaS Dashboard</h3>
-                        <p class="text-muted-foreground text-sm leading-relaxed">Analytics dashboard with real-time data visualization and user management.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Music Section -->
-    <section id="music" class="section-padding bg-muted/30">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Sounds & Melodies</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Music</h2>
-                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Crafting emotions through guitar and piano, from intimate acoustic pieces to powerful compositions.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Guitar Card -->
-                <div class="card-premium p-8 group reveal">
-                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
-                        <i data-lucide="guitar" class="w-8 h-8 text-accent"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Guitar</h3>
-                    <p class="text-muted-foreground mb-6 leading-relaxed">From soulful acoustic melodies to electrifying solos, expressing emotions through strings.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Rock</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Blues</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Acoustic</span>
-                    </div>
-                </div>
-
-                <!-- Piano Card -->
-                <div class="card-premium p-8 group reveal reveal-delay-1">
-                    <div class="inline-flex p-4 rounded-2xl bg-accent/10 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M11 20 22 4"/><path d="m22 20-11-6"/><path d="M13 20v-6"/><path d="M15 20v-6"/><path d="M17 20v-6"/><path d="M19 20v-6"/><path d="M2 10v10"/><path d="M5 20v-6"/><path d="M7 20v-6"/><path d="M9 20v-6"/></svg>
-                    </div>
-                    <h3 class="font-display text-2xl font-medium mb-4 group-hover:text-accent transition-colors">Piano</h3>
-                    <p class="text-muted-foreground mb-6 leading-relaxed">Creating atmospheric compositions and heartfelt arrangements on the keys.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Classical</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Ambient</span>
-                        <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">Film Score</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filmmaking Section -->
-    <section id="filmmaking" class="section-padding bg-primary text-primary-foreground">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Visual Storytelling</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-primary-foreground">Filmmaking</h2>
-                <p class="text-primary-foreground/70 text-lg max-w-2xl mx-auto">Capturing stories through the lens, from concept to final cut.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Film 1 -->
-                <div class="relative group cursor-pointer overflow-hidden rounded-xl reveal">
-                    <div class="aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=450&fit=crop" alt="Film" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-50 group-hover:opacity-90 transition-opacity"></div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div class="p-5 bg-accent rounded-full transform transition hover:scale-110">
-                            <i data-lucide="play" class="w-8 h-8 text-accent-foreground fill-current"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="text-xs font-medium text-accent uppercase tracking-wider">Short Film</span>
-                        <h3 class="font-display text-xl font-medium mt-1 text-primary-foreground">Urban Dreams</h3>
-                        <span class="text-sm text-primary-foreground/60 mt-2 inline-block">12:34</span>
-                    </div>
-                </div>
-
-                <!-- Film 2 -->
-                <div class="relative group cursor-pointer overflow-hidden rounded-xl reveal reveal-delay-1">
-                    <div class="aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=450&fit=crop" alt="Film" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-50 group-hover:opacity-90 transition-opacity"></div>
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div class="p-5 bg-accent rounded-full transform transition hover:scale-110">
-                            <i data-lucide="play" class="w-8 h-8 text-accent-foreground fill-current"></i>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="text-xs font-medium text-accent uppercase tracking-wider">Documentary</span>
-                        <h3 class="font-display text-xl font-medium mt-1 text-primary-foreground">The Journey Within</h3>
-                        <span class="text-sm text-primary-foreground/60 mt-2 inline-block">24:15</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="mt-16 flex flex-wrap justify-center gap-12 md:gap-20 reveal">
-                <div class="text-center">
-                    <i data-lucide="film" class="w-6 h-6 text-accent mx-auto mb-3"></i>
-                    <div class="font-display text-3xl font-medium text-primary-foreground">20+</div>
-                    <div class="text-sm text-primary-foreground/60">Projects</div>
-                </div>
-                <div class="text-center">
-                    <i data-lucide="clapperboard" class="w-6 h-6 text-accent mx-auto mb-3"></i>
-                    <div class="font-display text-3xl font-medium text-primary-foreground">5+</div>
-                    <div class="text-sm text-primary-foreground/60">Years</div>
-                </div>
-                <div class="text-center">
-                    <i data-lucide="video" class="w-6 h-6 text-accent mx-auto mb-3"></i>
-                    <div class="font-display text-3xl font-medium text-primary-foreground">100K+</div>
-                    <div class="text-sm text-primary-foreground/60">Views</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Design Section -->
-    <section id="design" class="section-padding">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Visual Creations</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Graphic Design</h2>
-                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">From brand identities to digital art, creating visuals that communicate and inspire.</p>
-            </div>
-
-            <!-- Masonry Grid -->
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <!-- Design Item 1 -->
-                <div class="break-inside-avoid group cursor-pointer reveal" onclick="openLightbox(this)">
-                    <div class="relative overflow-hidden rounded-xl">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" alt="Brand Identity">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-6">
-                            <span class="text-xs font-medium text-accent uppercase tracking-wider mb-1">Branding</span>
-                            <h3 class="font-display text-xl font-medium text-white">Brand Identity</h3>
-                        </div>
-                        <div class="absolute top-4 right-4 p-2 bg-background/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <i data-lucide="expand" class="w-4 h-4 text-foreground"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Design Item 2 -->
-                <div class="break-inside-avoid group cursor-pointer reveal reveal-delay-1" onclick="openLightbox(this)">
-                    <div class="relative overflow-hidden rounded-xl">
-                        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?w=600&h=800&fit=crop" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" alt="Packaging">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-6">
-                            <span class="text-xs font-medium text-accent uppercase tracking-wider mb-1">Packaging</span>
-                            <h3 class="font-display text-xl font-medium text-white">Product Packaging</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Design Item 3 -->
-                <div class="break-inside-avoid group cursor-pointer reveal reveal-delay-2" onclick="openLightbox(this)">
-                    <div class="relative overflow-hidden rounded-xl">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=600&fit=crop" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" alt="Social">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
-                        <div class="absolute inset-0 flex flex-col justify-end p-6">
-                            <span class="text-xs font-medium text-accent uppercase tracking-wider mb-1">Digital</span>
-                            <h3 class="font-display text-xl font-medium text-white">Social Media Kit</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-muted/30">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 reveal">
-                <p class="text-accent text-sm uppercase tracking-[0.3em] mb-4">Get in Touch</p>
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Let's Work Together</h2>
-                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Have a project in mind? I'd love to hear about it. Let's create something amazing.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-                <!-- Info -->
-                <div class="lg:col-span-2 space-y-8 reveal">
+            <div class="glass" style="padding: 25px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <img id="setting-pic" src="" class="user-avatar" style="width: 60px; height: 60px;">
                     <div>
-                        <h3 class="font-display text-2xl font-medium mb-6">Contact Information</h3>
-                        <p class="text-muted-foreground leading-relaxed">Whether you need a website, video production, music composition, or design work, I'm here to bring your vision to life.</p>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 rounded-xl bg-accent/10"><i data-lucide="mail" class="w-5 h-5 text-accent"></i></div>
-                            <div>
-                                <p class="text-sm text-muted-foreground">Email</p>
-                                <p class="font-medium">aniflax.nix@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 rounded-xl bg-accent/10"><i data-lucide="map-pin" class="w-5 h-5 text-accent"></i></div>
-                            <div>
-                                <p class="text-sm text-muted-foreground">Location</p>
-                                <p class="font-medium">Available Worldwide</p>
-                            </div>
-                        </div>
+                        <h3 id="setting-name" style="margin: 0;">User</h3>
+                        <p id="setting-email" style="margin:0; font-size:13px; color:var(--text-light)">...</p>
+                        <button onclick="document.getElementById('photo-upload').click()" style="margin-top:5px; font-size:12px; border:none; background:none; color:var(--primary); cursor:pointer; font-weight:600;">Change Photo</button>
+                        <input type="file" id="photo-upload" accept="image/*" hidden>
                     </div>
                 </div>
-
-                <!-- Form -->
-                <div class="lg:col-span-3 reveal reveal-delay-1">
-                    <form id="contact-form" class="card-premium p-8 space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label for="name" class="text-sm font-medium">Your Name</label>
-                                <!-- Required 'name' attribute for Google Sheets -->
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all" placeholder="John Doe">
-                            </div>
-                            <div class="space-y-2">
-                                <label for="email" class="text-sm font-medium">Email Address</label>
-                                <!-- Required 'name' attribute for Google Sheets -->
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all" placeholder="john@example.com">
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <label for="subject" class="text-sm font-medium">Subject</label>
-                            <!-- Required 'name' attribute for Google Sheets -->
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all" placeholder="Project Inquiry">
-                        </div>
-                        <div class="space-y-2">
-                            <label for="message" class="text-sm font-medium">Message</label>
-                            <!-- Required 'name' attribute for Google Sheets -->
-                            <textarea id="message" name="message" required rows="5" class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all resize-none" placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full flex items-center justify-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
-                            Send Message
-                            <i data-lucide="send" class="w-4 h-4"></i>
-                        </button>
-                    </form>
-                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-primary-foreground py-12">
-        <div class="container mx-auto px-6 md:px-12">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                <a href="#home" class="font-display text-2xl font-semibold tracking-tight">
-                    <span class="text-primary-foreground">Ani</span>
-                    <span class="text-accent">flax</span>
-                </a>
-
-                <div class="flex items-center gap-4">
-                    <a href="https://github.com/aniflax" target="_blank" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
-                    <a href="https://x.com/anu_x_lost0" target="_blank" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    <a href="https://www.instagram.com/aniflax.nix/" target="_blank" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                    <a href="https://www.linkedin.com/in/anupam-202542343/" target="_blank" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                    <a href="https://www.youtube.com/@Solivagant-lost" target="_blank" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            <div class="glass" style="padding: 25px;">
+                <div class="setting-row">
+                    <span>Currency Symbol</span>
+                    <select id="currency-select" class="custom-select" style="width: auto;">
+                        <option value="$">USD ($)</option>
+                        <option value="₹">INR (₹)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="£">GBP (£)</option>
+                    </select>
                 </div>
 
-                <p class="text-sm text-primary-foreground/60">Made by Aniflax.nix</p>
-            </div>
-            <div class="mt-8 pt-8 border-t border-primary-foreground/10 flex flex-wrap justify-center gap-8 text-sm text-primary-foreground/60">
-                <a href="#home" class="hover:text-primary-foreground transition-colors">Home</a>
-                <a href="#music" class="hover:text-primary-foreground transition-colors">Music</a>
-                <a href="#webdev" class="hover:text-primary-foreground transition-colors">Web Dev</a>
-                <a href="#filmmaking" class="hover:text-primary-foreground transition-colors">Filmmaking</a>
-                <a href="#design" class="hover:text-primary-foreground transition-colors">Design</a>
-                <a href="#contact" class="hover:text-primary-foreground transition-colors">Contact</a>
+                <!-- Send Report Button (Moved Here) -->
+                <div class="setting-row">
+                    <div>
+                        <span style="display:block;">Email Report</span>
+                        <small style="color:var(--text-light)">Send this month's summary</small>
+                    </div>
+                    <button id="btn-send-report" style="background: var(--text-dark); color: white; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer; font-size: 13px;">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+
+                <button id="logoutBtn" style="width:100%; padding:15px; background: #fee2e2; color: #ef4444; border:none; border-radius:14px; font-weight:600; cursor:pointer; margin-top: 20px;">Sign Out</button>
             </div>
         </div>
-    </footer>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-foreground/90 backdrop-blur-lg flex items-center justify-center p-6 cursor-pointer" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Expanded view" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl">
     </div>
 
-    <!-- Scripts -->
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+    <!-- TABS -->
+    <div id="nav-tabs" class="tab-bar hidden">
+        <button class="tab-btn active" onclick="switchPage('dashboard', this)">
+            <i class="fas fa-chart-pie"></i> <span class="desktop-text">Dashboard</span>
+        </button>
+        <button class="tab-btn" onclick="switchPage('history', this)">
+            <i class="fas fa-list"></i> <span class="desktop-text">History</span>
+        </button>
+        <button class="tab-btn" onclick="switchPage('settings', this)">
+            <i class="fas fa-cog"></i> <span class="desktop-text">Settings</span>
+        </button>
+    </div>
 
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass', 'py-4');
-                navbar.classList.remove('py-6');
-            } else {
-                navbar.classList.remove('glass', 'py-4');
-                navbar.classList.add('py-6');
-            }
-        });
+    <!-- FIREBASE LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, where, onSnapshot, orderBy, doc, deleteDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            } else {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            });
-        });
-
-        // Scroll Animations (Intersection Observer)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXRrShYsp6VGXQTQXqa8QCwSAaqJRZ2TI",
+            authDomain: "finflow-77970.firebaseapp.com",
+            projectId: "finflow-77970",
+            storageBucket: "finflow-77970.firebasestorage.app",
+            messagingSenderId: "301557719855",
+            appId: "1:301557719855:web:e1f5364018e15e527b37da"
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, observerOptions);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        let allTransactions = [];
+        let dashChart = null;
+        let currentUser = null;
+        let currency = "$"; 
 
-        // --- GOOGLE SHEETS CONNECTION LOGIC ---
-        const contactForm = document.getElementById('contact-form');
-        
-        // This is your NEW Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwknXllSqVcRz1Z_MeFfZ7l5mDGf7UJWLEihDXck3PeN55WxfJFW9jWdyHIWt-GbDx3/exec';
+        // 1. SET DATE INPUT TO TODAY DEFAULT
+        function setTodayDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('inp-date').value = today;
+        }
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const btn = contactForm.querySelector('button');
-            const originalContent = btn.innerHTML;
-            
-            // 1. Show Loading Indicator
-            btn.innerHTML = `<span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full mr-2"></span> Sending...`;
-            btn.disabled = true;
+        // AUTH
+        document.getElementById('loginBtn').onclick = () => signInWithPopup(auth, provider);
+        document.getElementById('logoutBtn').onclick = () => signOut(auth);
 
-            const formData = new FormData(contactForm);
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                // UI Toggle
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('user-info').classList.remove('hidden');
+                document.getElementById('nav-tabs').classList.remove('hidden');
+                document.getElementById('locked-message').classList.add('hidden');
+                
+                // Show Dashboard
+                switchPage('dashboard', document.querySelector('.tab-btn'));
+                setTodayDate();
 
-            // 2. Send Data using 'no-cors' mode
-            // This mode prevents browser errors when sending data to Google Scripts
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: formData,
-                mode: 'no-cors' 
-            })
-            .then(() => {
-                // 3. Handle Success
-                // Since we use 'no-cors', we can't read the response JSON, 
-                // but if the promise resolves, the request was sent.
-                alert('Message sent successfully! I will get back to you soon.');
-                contactForm.reset();
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-            })
-            .catch(error => {
-                // 4. Handle Error
-                console.error('Error!', error.message);
-                alert('There was an issue sending the message. Please check your internet connection.');
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-            });
+                // Load Data
+                document.getElementById('setting-name').innerText = user.displayName;
+                document.getElementById('setting-email').innerText = user.email;
+                document.getElementById('header-pic').src = user.photoURL;
+                document.getElementById('setting-pic').src = user.photoURL;
+                
+                await loadUserProfile(user);
+                loadData(user.uid);
+            } else {
+                currentUser = null;
+                document.getElementById('loginBtn').classList.remove('hidden');
+                document.getElementById('user-info').classList.add('hidden');
+                document.getElementById('nav-tabs').classList.add('hidden');
+                document.getElementById('locked-message').classList.remove('hidden');
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            }
         });
 
-        // Lightbox Functions
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
+        // NAVIGATION
+        window.switchPage = (pageId, btn) => {
+            document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            if(btn) btn.classList.add('active');
 
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            lightboxImg.src = img.src;
-            lightbox.classList.add('open');
+            if(pageId === 'dashboard') renderDashboard();
+            if(pageId === 'history') renderHistory();
+        };
+
+        // LOAD DATA
+        function loadData(uid) {
+            const q = query(collection(db, "transactions"), where("uid", "==", uid), orderBy("date", "desc"));
+            onSnapshot(q, (snapshot) => {
+                allTransactions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                updateMonthDropdowns();
+                const activePage = document.querySelector('.page.active').id;
+                if(activePage === 'page-dashboard') renderDashboard();
+                if(activePage === 'page-history') renderHistory();
+            });
         }
 
-        function closeLightbox() {
-            lightbox.classList.remove('open');
+        // DROPDOWN LOGIC (FIXED)
+        function updateMonthDropdowns() {
+            const months = [...new Set(allTransactions.map(t => t.month))];
+            
+            // FORCE CURRENT MONTH
+            const now = new Date();
+            const currentMonth = now.toLocaleString('default', { month: 'short', year: 'numeric' }); // e.g., "Feb 2026"
+            
+            if (!months.includes(currentMonth)) {
+                months.unshift(currentMonth); // Add to top if not present
+            }
+
+            // Dashboard Dropdown
+            const dashSelect = document.getElementById('dash-month-select');
+            const savedVal = dashSelect.value || currentMonth;
+            
+            dashSelect.innerHTML = '';
+            months.forEach(m => {
+                dashSelect.innerHTML += `<option value="${m}">${m}</option>`;
+            });
+            // Ensure we select existing value OR default to current month
+            dashSelect.value = months.includes(savedVal) ? savedVal : currentMonth;
+
+            // History Dropdown
+            const histSelect = document.getElementById('history-filter-month');
+            const histSaved = histSelect.value;
+            histSelect.innerHTML = '<option value="all">All Time</option>';
+            months.forEach(m => {
+                histSelect.innerHTML += `<option value="${m}">${m}</option>`;
+            });
+            histSelect.value = histSaved || 'all';
         }
+
+        document.getElementById('dash-month-select').addEventListener('change', renderDashboard);
+
+        // DASHBOARD RENDER
+        function renderDashboard() {
+            const selectedMonth = document.getElementById('dash-month-select').value;
+            const data = allTransactions.filter(t => t.month === selectedMonth);
+
+            let inc = 0, exp = 0, inv = 0;
+            const listDiv = document.getElementById('dash-history');
+            listDiv.innerHTML = '';
+
+            data.forEach(t => {
+                if(t.type === 'income') inc += t.amount;
+                else {
+                    exp += t.amount;
+                    if(t.category === 'Investments') inv += t.amount;
+                }
+            });
+
+            document.getElementById('kpi-income').innerText = `${currency}${inc}`;
+            document.getElementById('kpi-expense').innerText = `${currency}${exp}`;
+            document.getElementById('kpi-invest').innerText = `${currency}${inv}`;
+
+            // List (Top 5)
+            data.slice(0, 5).forEach(t => {
+                const icon = t.type==='income' ? 'fa-arrow-down' : (t.category==='Needs'?'fa-home':(t.category==='Wants'?'fa-glass-cheers':'fa-chart-line'));
+                const color = t.type==='income' ? 'var(--income)' : 'var(--text-dark)';
+                
+                listDiv.innerHTML += `
+                    <div class="item">
+                        <div style="display:flex; align-items:center; gap:12px">
+                            <div class="cat-icon"><i class="fas ${icon}"></i></div>
+                            <div>
+                                <div style="font-weight:600; font-size:14px;">${t.description}</div>
+                                <div style="font-size:11px; color:var(--text-light)">${new Date(t.date).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+                        <span style="font-weight:700; color:${color}">${t.type==='income'?'+':'-'}${currency}${t.amount}</span>
+                    </div>`;
+            });
+
+            // Chart
+            const ctx = document.getElementById('dashChart').getContext('2d');
+            if(dashChart) dashChart.destroy();
+            
+            if(data.length === 0) {
+                document.getElementById('no-data-msg').classList.remove('hidden');
+                dashChart = new Chart(ctx, { type: 'doughnut', data: { datasets: [{ data: [1], backgroundColor: ['#f1f5f9'], borderWidth: 0 }] }, options: { cutout: '75%', events: [] } });
+            } else {
+                document.getElementById('no-data-msg').classList.add('hidden');
+                dashChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Expense', 'Invest', 'Save'],
+                        datasets: [{
+                            data: [exp - inv, inv, Math.max(0, inc - exp)],
+                            backgroundColor: ['#ef4444', '#3b82f6', '#10b981'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { cutout: '75%', plugins: { legend: { display: false } } }
+                });
+            }
+        }
+
+        // HISTORY RENDER
+        document.getElementById('history-filter-month').addEventListener('change', renderHistory);
+        document.getElementById('history-filter-cat').addEventListener('change', renderHistory);
+
+        function renderHistory() {
+            const mFilter = document.getElementById('history-filter-month').value;
+            const cFilter = document.getElementById('history-filter-cat').value;
+            
+            let filtered = allTransactions;
+            if(mFilter !== 'all') filtered = filtered.filter(t => t.month === mFilter);
+            if(cFilter !== 'all') filtered = filtered.filter(t => t.category === cFilter);
+
+            const div = document.getElementById('history-list-full');
+            div.innerHTML = '';
+            
+            if(filtered.length === 0) div.innerHTML = '<p style="text-align:center; color:#aaa">No records.</p>';
+
+            filtered.forEach(t => {
+                const color = t.type === 'income' ? 'var(--income)' : 'var(--text-dark)';
+                div.innerHTML += `
+                    <div class="item">
+                        <div>
+                            <div style="font-weight:600; font-size:14px;">${t.description}</div>
+                            <div style="font-size:11px; color:var(--text-light)">${new Date(t.date).toLocaleDateString()} • ${t.category}</div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="font-weight:700; color:${color}">${t.type==='income'?'+':'-'}${currency}${t.amount}</span>
+                            <button onclick="window.deleteItem('${t.id}')" style="background:none; border:none; color:#ef4444; cursor:pointer;">✕</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // ADD TRANSACTION (WITH DATE FIX)
+        document.getElementById('btn-save').onclick = async () => {
+            const desc = document.getElementById('inp-desc').value;
+            const amt = document.getElementById('inp-amt').value;
+            const type = document.getElementById('inp-type').value;
+            const cat = document.getElementById('inp-cat').value;
+            const dateVal = document.getElementById('inp-date').value; // Get YYYY-MM-DD
+
+            if(!desc || !amt || !dateVal) return alert("Please fill all fields, including Date.");
+
+            // Construct Date Object from Input (fixes timezone issues mostly)
+            const dateObj = new Date(dateVal);
+            // Ensure we use the dateObj for the Month String
+            const monthStr = dateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
+
+            const btn = document.getElementById('btn-save');
+            btn.innerText = "Saving...";
+            
+            try {
+                await addDoc(collection(db, "transactions"), {
+                    uid: currentUser.uid,
+                    description: desc,
+                    amount: parseFloat(amt),
+                    type: type,
+                    category: cat,
+                    date: dateObj.getTime(), // Save timestamp from chosen date
+                    month: monthStr,         // Save month string from chosen date
+                    year: dateObj.getFullYear().toString()
+                });
+                
+                document.getElementById('inp-desc').value = '';
+                document.getElementById('inp-amt').value = '';
+                setTodayDate(); // Reset date to today
+                btn.innerText = "Save Transaction";
+            } catch(e) {
+                console.error(e);
+                alert("Error saving");
+                btn.innerText = "Save Transaction";
+            }
+        };
+
+        window.deleteItem = async (id) => {
+            if(confirm("Delete this?")) await deleteDoc(doc(db, "transactions", id));
+        };
+
+        // SETTINGS & PROFILE
+        async function loadUserProfile(user) {
+            const snap = await getDoc(doc(db, "users", user.uid));
+            if(snap.exists()) {
+                const d = snap.data();
+                if(d.currency) {
+                    currency = d.currency;
+                    document.getElementById('currency-select').value = currency;
+                }
+                if(d.photoBase64) {
+                    document.getElementById('header-pic').src = d.photoBase64;
+                    document.getElementById('setting-pic').src = d.photoBase64;
+                }
+            }
+        }
+
+        document.getElementById('photo-upload').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if(file.size > 500000) return alert("Image too large (Max 500KB)");
+            const reader = new FileReader();
+            reader.onload = async (ev) => {
+                const b64 = ev.target.result;
+                document.getElementById('setting-pic').src = b64;
+                document.getElementById('header-pic').src = b64;
+                await setDoc(doc(db, "users", currentUser.uid), { photoBase64: b64 }, { merge: true });
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('currency-select').addEventListener('change', async (e) => {
+            currency = e.target.value;
+            await setDoc(doc(db, "users", currentUser.uid), { currency: currency }, { merge: true });
+            location.reload(); 
+        });
+
+        // SEND REPORT (Settings Page)
+        document.getElementById('btn-send-report').onclick = () => {
+            if(!currentUser) return;
+            const now = new Date();
+            const currentMonthStr = now.toLocaleString('default', { month: 'short', year: 'numeric' });
+            
+            // Calculate totals for Current Month
+            const data = allTransactions.filter(t => t.month === currentMonthStr);
+            let inc = 0, exp = 0;
+            data.forEach(t => t.type==='income'? inc+=t.amount : exp+=t.amount);
+
+            const subject = `Monthly Report: ${currentMonthStr}`;
+            const body = `Hi ${currentUser.displayName},\n\nHere is your financial summary for ${currentMonthStr}:\n\nTotal Income: ${currency}${inc}\nTotal Expenses: ${currency}${exp}\nNet Savings: ${currency}${inc - exp}\n\nGenerated by FinFlow.`;
+            
+            window.location.href = `mailto:${currentUser.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        };
+
     </script>
 </body>
 </html>
