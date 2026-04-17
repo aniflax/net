@@ -176,6 +176,22 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* Floating Social Bar Animation */
+        @keyframes slideInSocial {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-50%) translateX(40px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(-50%) translateX(0); 
+            }
+        }
+
+        .animate-social-bar {
+            animation: slideInSocial 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+        }
+
         /* Lightbox */
         #lightbox {
             opacity: 0;
@@ -193,7 +209,6 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-300">
         <div class="container mx-auto px-6 md:px-12 flex items-center justify-between">
-            <!-- FIXED: Removed space between Ani and flax -->
             <a href="#home" class="font-display text-2xl font-semibold tracking-tight group"><span class="text-foreground">Ani</span><span class="text-gradient">flax</span></a>
 
             <!-- Desktop Menu -->
@@ -226,7 +241,6 @@
     </div>
 
     <!-- Hero Section -->
-    <!-- UPDATED: Added pt-32 to move content down -->
     <section id="home" class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden">
         <!-- Animated Background Blobs -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -236,12 +250,9 @@
 
         <div class="container mx-auto px-6 md:px-12 relative z-10 text-center max-w-4xl">
 
-            <!-- UPDATED: Fancy Animated Profile Picture -->
+            <!-- Profile Picture -->
             <div class="reveal relative inline-block mb-12 group animate-float">
-                <!-- Outer Glow Ring -->
                 <div class="absolute -inset-4 bg-gradient-to-tr from-accent/40 to-primary/10 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition duration-700"></div>
-
-                <!-- The Image with Glass Frame -->
                 <div class="relative p-2 bg-background/50 backdrop-blur-sm rounded-full border border-foreground/5 shadow-2xl">
                     <img 
                         src="https://res.cloudinary.com/drqlpjlel/image/upload/v1770050995/IMG_2505_pkgn37.jpg" 
@@ -250,13 +261,11 @@
                     >
                 </div>
             </div>
-            <!-- End of Profile Picture -->
 
             <p class="reveal reveal-delay-1 text-muted-foreground text-sm md:text-base uppercase tracking-[0.3em] mb-6">
                 Welcome to my creative universe
             </p>
 
-            <!-- UPDATED: Fancy Text Style -->
             <h1 class="reveal reveal-delay-2 font-display text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-[0.9] mb-8">
                 I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-[pulse_5s_ease-in-out_infinite]">Aniflax</span>
             </h1>
@@ -632,6 +641,7 @@
                     <a href="https://www.instagram.com/aniflax.nix/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors">
                         <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.75 2.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z"/></svg>
                     </a>
+                    <!-- Standardized existing Facebook icon for footer if desired, left intact per your code request -->
                     <a href="https://www.linkedin.com/in/anupam-202542343/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="p-3 rounded-full bg-primary-foreground/10 hover:bg-accent/20 transition-colors">
                         <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.06 2.06 0 1 0 5.3 7.12 2.06 2.06 0 0 0 5.25 3ZM20.44 12.4c0-3.03-1.62-4.44-3.79-4.44-1.75 0-2.53.96-2.97 1.63V8.5h-3.37c.04.72 0 11.5 0 11.5h3.37v-6.42c0-.34.02-.68.13-.92.27-.68.88-1.39 1.91-1.39 1.35 0 1.9 1.05 1.9 2.58V20H21c.04-3.72 0-7.6 0-7.6h-.56Z"/></svg>
                     </a>
@@ -652,6 +662,34 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Social Media Bar -->
+    <aside class="fixed top-1/2 right-2 md:right-5 -translate-y-1/2 z-40 flex flex-col gap-3 md:gap-4 p-2 md:p-3 rounded-full bg-background/60 backdrop-blur-xl border border-border/60 shadow-lg opacity-0 animate-social-bar" aria-label="Social Media Links">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/aniflax.nix/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-muted/50 hover:bg-accent/15 hover:shadow-lg hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-300 fill-current"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.75 2.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z"/></svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-muted/50 hover:bg-accent/15 hover:shadow-lg hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-300 fill-current"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@Solivagant-lost" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-muted/50 hover:bg-accent/15 hover:shadow-lg hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-300 fill-current"><path d="M21.582 7.186a2.992 2.992 0 0 0-2.105-2.116C17.618 4.5 12 4.5 12 4.5s-5.618 0-7.477.57A2.992 2.992 0 0 0 2.418 7.186 31.24 31.24 0 0 0 1.875 12c0 1.63.19 3.245.543 4.814a2.992 2.992 0 0 0 2.105 2.116c1.859.57 7.477.57 7.477.57s5.618 0 7.477-.57a2.992 2.992 0 0 0 2.105-2.116c.353-1.57.543-3.184.543-4.814 0-1.63-.19-3.245-.543-4.814ZM10.2 15.07V8.93L15.545 12 10.2 15.07Z"/></svg>
+        </a>
+
+        <!-- X (Twitter) -->
+        <a href="https://x.com/anu_x_lost0" target="_blank" rel="noopener noreferrer" aria-label="X" class="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-muted/50 hover:bg-accent/15 hover:shadow-lg hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors duration-300 fill-current"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.639 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932Zm-1.291 19.492h2.039L6.486 3.248H4.298L17.61 20.645Z"/></svg>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/aniflax" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="group flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-muted/50 hover:bg-accent/15 hover:shadow-lg hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-300 fill-current"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.426 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.605-3.369-1.343-3.369-1.343-.455-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.607.069-.607 1.004.071 1.532 1.033 1.532 1.033.893 1.532 2.341 1.09 2.91.834.092-.647.35-1.09.636-1.341-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.026 2.748-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.943.359.31.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.481A10.02 10.02 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z"/></svg>
+        </a>
+    </aside>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-50 bg-foreground/90 backdrop-blur-lg flex items-center justify-center p-6 cursor-pointer" onclick="closeLightbox()">
