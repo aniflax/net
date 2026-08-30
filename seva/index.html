@@ -412,11 +412,17 @@
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxjQAsGb_YXwUWDT4MbrDtLhj2VS3SWE3wrywz75xsYv_9bHv0jJhapBjkfcXUWxyVKpw/exec';
+
     try{
-      const key = 'response:' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
-      await window.storage.set(key, JSON.stringify(entry), true);
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(entry)
+      });
     }catch(err){
-      console.error('Storage error', err);
+      console.error('Submit error', err);
     }
 
     document.getElementById('formCard').style.display = 'none';
